@@ -50,13 +50,14 @@ export default function Hero() {
           </p>
         </motion.div>
 
-        {/* 关键数字 */}
+        {/* 关键数字 + 导览卡片 — 共用 4 列网格对齐 */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.6 }}
-          className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6"
+          className="grid grid-cols-4 gap-3"
         >
+          {/* 第一行：关键数字 */}
           {overview.stats.map((stat, i) => (
             <div
               key={i}
@@ -68,22 +69,15 @@ export default function Hero() {
               <div className="text-xs text-gray-500 mt-0.5">{stat.label}</div>
             </div>
           ))}
-        </motion.div>
 
-        {/* 导览卡片 */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.6 }}
-          className="grid sm:grid-cols-2 gap-3 max-w-2xl mx-auto"
-        >
+          {/* 第二/三行：导览卡片，每张跨 2 列，与上方数字列对齐 */}
           {overview.cards.map((card, i) => {
             const Icon = iconMap[card.icon]
             return (
               <a
                 key={card.href}
                 href={card.href}
-                className="flex items-center gap-3 p-3.5 rounded-xl border border-gray-800/60 bg-surface-800/40 backdrop-blur-sm hover:border-brand-blue/30 transition-colors group text-left h-full"
+                className="col-span-2 flex items-center gap-3 p-3.5 rounded-xl border border-gray-800/60 bg-surface-800/40 backdrop-blur-sm hover:border-brand-blue/30 transition-colors group text-left"
               >
                 <div className="shrink-0 w-9 h-9 rounded-lg bg-brand-blue/10 flex items-center justify-center group-hover:bg-brand-blue/15 transition-colors">
                   <Icon size={16} className="text-brand-blue" />
