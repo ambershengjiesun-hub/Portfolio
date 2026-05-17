@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { aboutSite } from '../data'
+import { useData } from '../LanguageContext'
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -9,12 +9,14 @@ const fadeUp = {
 }
 
 export default function AboutSite() {
+  const { aboutSite } = useData()
+
   return (
     <section className="py-24 md:py-32 px-6 bg-surface-800/50">
       <div className="max-w-3xl mx-auto">
         <motion.div {...fadeUp} className="mb-10">
           <h2 className="section-heading">
-            关于这个<span className="gradient-text">网站</span>
+            About This <span className="gradient-text">Site</span>
           </h2>
         </motion.div>
 

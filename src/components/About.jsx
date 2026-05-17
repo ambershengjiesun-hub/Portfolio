@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { aboutText } from '../data'
+import { useData } from '../LanguageContext'
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -9,12 +9,14 @@ const fadeUp = {
 }
 
 export default function About() {
+  const { aboutText } = useData()
+
   return (
     <section id="about" className="py-24 md:py-32 px-6">
       <div className="max-w-3xl mx-auto">
         <motion.div {...fadeUp}>
           <h2 className="section-heading">
-            关于<span className="gradient-text">我</span>
+            About <span className="gradient-text">Me</span>
           </h2>
         </motion.div>
 

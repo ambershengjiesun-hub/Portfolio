@@ -1,9 +1,10 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
-import { personal } from '../data'
+import { useData } from '../LanguageContext'
 
 export default function Hero() {
+  const { personal, heroScroll } = useData()
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -17,7 +18,6 @@ export default function Hero() {
       ref={ref}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* 背景装饰 */}
       <div className="absolute inset-0 bg-gradient-to-b from-brand-blue/5 via-transparent to-surface-900" />
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-blue/5 rounded-full blur-3xl" />
 
@@ -48,14 +48,13 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* 向下滚动提示 */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
-        <span className="text-xs text-gray-500">向下滚动</span>
+        <span className="text-xs text-gray-500">{heroScroll}</span>
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}

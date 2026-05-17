@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
-import { navLinks, personal } from '../data'
+import { Menu, X, Globe } from 'lucide-react'
+import { useData, useLang } from '../LanguageContext'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const { navLinks, personal } = useData()
+  const { lang, toggleLang } = useLang()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50)
@@ -27,27 +29,38 @@ export default function Navbar() {
           <span className="text-brand-blue">.</span>
         </a>
 
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm text-gray-400 hover:text-white transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
+        <div className="flex items-center gap-4">
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm text-gray-400 hover:text-white transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
 
-        {/* Mobile toggle */}
-        <button
-          className="md:hidden text-gray-400 hover:text-white"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
+          {/* Language toggle */}
+          <button
+            onClick={toggleLang}
+            className="flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium text-gray-400 hover:text-white border border-gray-700 hover:border-gray-500 rounded-lg transition-colors"
+          >
+            <Globe size={13} />
+            {lang === 'zh' ? 'EN' : '中文'}
+          </button>
+
+          {/* Mobile toggle */}
+          <button
+            className="md:hidden text-gray-400 hover:text-white"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Users, Target, Sparkles, Briefcase } from 'lucide-react'
-import { careerDirections } from '../data'
+import { useData } from '../LanguageContext'
 
 const iconMap = { Users, Target, Sparkles, Briefcase }
 
@@ -12,16 +12,16 @@ const fadeUp = {
 }
 
 export default function CareerDirections() {
+  const { careerDirections, careerSub } = useData()
+
   return (
     <section id="career" className="py-24 md:py-32 px-6">
       <div className="max-w-4xl mx-auto">
         <motion.div {...fadeUp} className="mb-14">
           <h2 className="section-heading">
-            求职<span className="gradient-text">方向</span>
+            <span className="gradient-text">Career</span> Direction
           </h2>
-          <p className="section-subheading mt-3">
-            基于过去6年的积累，我看好以下四个方向。
-          </p>
+          <p className="section-subheading mt-3">{careerSub}</p>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 gap-5">

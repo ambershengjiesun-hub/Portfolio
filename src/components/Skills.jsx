@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { skillCategories } from '../data'
+import { useData } from '../LanguageContext'
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -9,12 +9,14 @@ const fadeUp = {
 }
 
 export default function Skills() {
+  const { skillCategories } = useData()
+
   return (
     <section id="skills" className="py-24 md:py-32 px-6 bg-surface-800/50">
       <div className="max-w-4xl mx-auto">
         <motion.div {...fadeUp} className="mb-14">
           <h2 className="section-heading">
-            专业<span className="gradient-text">能力</span>
+            <span className="gradient-text">Skills</span>
           </h2>
         </motion.div>
 

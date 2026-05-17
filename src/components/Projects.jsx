@@ -8,7 +8,7 @@ import {
   Brain,
   ArrowRight,
 } from 'lucide-react'
-import { projects } from '../data'
+import { useData } from '../LanguageContext'
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -17,7 +17,6 @@ const fadeUp = {
   transition: { duration: 0.6 },
 }
 
-// 数字滚动动画（从 from 到 to）
 function AnimatedMetric({ from, to, unit, label }) {
   const [count, setCount] = useState(from)
   const ref = useRef(null)
@@ -60,7 +59,6 @@ function AnimatedMetric({ from, to, unit, label }) {
   )
 }
 
-// 大数字展示
 function BigNumber({ value, unit, label }) {
   return (
     <div className="text-center py-4">
@@ -76,7 +74,6 @@ function BigNumber({ value, unit, label }) {
   )
 }
 
-// 统计卡片组
 function StatCards({ data }) {
   if (!data) return null
 
@@ -120,13 +117,12 @@ function StatCards({ data }) {
   )
 }
 
-// 数据源卡片
 function DataSources({ sources }) {
   if (!sources) return null
   return (
     <motion.div {...fadeUp} className="mt-6">
       <p className="text-xs text-gray-500 mb-3 uppercase tracking-wider">
-        多源数据整合
+        Multi-source Data Integration
       </p>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {sources.map((s, i) => (
@@ -143,7 +139,6 @@ function DataSources({ sources }) {
   )
 }
 
-// 双通道测试法流程图
 function MethodDiagram({ diagram }) {
   if (!diagram) return null
   return (
@@ -152,7 +147,6 @@ function MethodDiagram({ diagram }) {
         {diagram.title}
       </p>
       <div className="bg-surface-700/50 border border-gray-700 rounded-xl p-5">
-        {/* 主通道 */}
         <div className="flex flex-wrap items-center gap-3 mb-4">
           <span className="text-xs font-semibold text-brand-blue shrink-0">
             {diagram.mainChannel.label}
@@ -174,7 +168,6 @@ function MethodDiagram({ diagram }) {
 
         <div className="border-t border-gray-700 my-4" />
 
-        {/* 辅通道 */}
         <div className="flex flex-wrap items-center gap-3">
           <span className="text-xs font-semibold text-gray-400 shrink-0">
             {diagram.subChannel.label}
@@ -191,7 +184,6 @@ function MethodDiagram({ diagram }) {
   )
 }
 
-// 叙事区块
 function NarrativeBlock({ icon: Icon, label, content, children, delay }) {
   return (
     <motion.div
@@ -213,11 +205,9 @@ function NarrativeBlock({ icon: Icon, label, content, children, delay }) {
   )
 }
 
-// 单个项目区块
-function ProjectCard({ project }) {
+function ProjectCard({ project, labels }) {
   return (
     <motion.div {...fadeUp} className="card">
-      {/* 标题行 */}
       <div className="flex flex-wrap items-start justify-between gap-3 mb-2">
         <h3 className="text-xl md:text-2xl font-bold text-white">
           {project.title}
@@ -231,7 +221,6 @@ function ProjectCard({ project }) {
         </div>
       </div>
 
-      {/* 关键指标 - 有动画数据时展示 */}
       {project.metricFrom != null && project.metricTo != null && (
         <AnimatedMetric
           from={project.metricFrom}
@@ -241,28 +230,22 @@ function ProjectCard({ project }) {
         />
       )}
 
-      {/* 大数据量 */}
       {project.bigNumber && <BigNumber {...project.bigNumber} />}
 
-      {/* 叙事区块 */}
       <div className="mt-6 space-y-5">
         <NarrativeBlock
           icon={Lightbulb}
-          label="背景"
+          label={labels.background}
           content={project.background}
           delay={0}
         />
         <NarrativeBlock
           icon={AlertTriangle}
-          label="问题"
+          label={labels.problem}
           content={project.problem}
           delay={0.1}
         />
-        <NarrativeBlock
-          icon={UserCheck}
-          label="我的角色与行动"
-          delay={0.2}
-        >
+        <NarrativeBlock icon={UserCheck} label={labels.role} delay={0.2}>
           <p className="text-gray-400 text-sm mb-3">{project.role}</p>
           <ul className="space-y-2">
             {project.actions.map((a, i) => (
@@ -274,7 +257,7 @@ function ProjectCard({ project }) {
           </ul>
         </NarrativeBlock>
 
-        <NarrativeBlock icon={TrendingUp} label="成果" delay={0.3}>
+        <NarrativeBlock icon={TrendingUp} label={labels.results} delay={0.3}>
           <ul className="space-y-2">
             {project.results.map((r, i) => (
               <li key={i} className="flex gap-2 text-sm text-gray-300">
@@ -287,40 +270,39 @@ function ProjectCard({ project }) {
 
         <NarrativeBlock
           icon={Brain}
-          label="反思"
+          label={labels.reflection}
           content={project.reflection}
           delay={0.4}
         />
       </div>
 
-      {/* 可视化：统计卡片 */}
       <StatCards data={project.statCards} />
-
-      {/* 可视化：方法流程图 */}
       <MethodDiagram diagram={project.methodDiagram} />
-
-      {/* 可视化：数据源 */}
       <DataSources sources={project.dataSources} />
     </motion.div>
   )
 }
 
 export default function Projects() {
+  const { projects, projectsHeading, projectsSub, projectLabels } = useData()
+
   return (
     <section id="projects" className="py-24 md:py-32 px-6">
       <div className="max-w-4xl mx-auto">
         <motion.div {...fadeUp} className="mb-14">
           <h2 className="section-heading">
-            核心<span className="gradient-text">项目</span>
+            <span className="gradient-text">Key</span> Projects
           </h2>
-          <p className="section-subheading mt-3">
-            六个项目，展示从数据诊断、评测体系搭建到方法论创新的完整过程。
-          </p>
+          <p className="section-subheading mt-3">{projectsSub}</p>
         </motion.div>
 
         <div className="space-y-10">
           {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+            <ProjectCard
+              key={project.id}
+              project={project}
+              labels={projectLabels}
+            />
           ))}
         </div>
       </div>

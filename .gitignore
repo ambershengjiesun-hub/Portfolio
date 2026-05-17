@@ -1,3 +1,9 @@
 node_modules
 dist
 .DS_Store
+.vite
+.claude
+.vscode
+ppt-master
+auto-ux-portfolio
+package-lock.json

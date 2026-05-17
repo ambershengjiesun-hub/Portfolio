@@ -1,6 +1,8 @@
-import { personal } from '../data'
+import { useData } from '../LanguageContext'
 
 export default function Footer() {
+  const { personal } = useData()
+
   return (
     <footer className="py-12 px-6 border-t border-gray-800">
       <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
