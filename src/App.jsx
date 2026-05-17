@@ -3,7 +3,7 @@ import { AnimatePresence } from 'framer-motion'
 import PasswordGate from './components/PasswordGate'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import Overview from './components/Overview'
+import SideNav from './components/SideNav'
 import About from './components/About'
 import Timeline from './components/Timeline'
 import Projects from './components/Projects'
@@ -27,7 +27,7 @@ export default function App() {
         <div className="min-h-screen bg-surface-900 text-white">
           <Navbar />
           <Hero />
-          <Overview />
+          <SideNav />
           <About />
           <Timeline />
           <Projects />
