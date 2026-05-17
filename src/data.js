@@ -21,6 +21,21 @@ const zh = {
     { label: '专业能力', href: '#skills' },
     { label: '求职方向', href: '#career' },
   ],
+  overview: {
+    heading: '站点导览',
+    stats: [
+      { value: '6+', label: '年智能座舱经验' },
+      { value: '6', label: '个核心项目' },
+      { value: '5', label: '项能力模块' },
+      { value: '3', label: '语言（中/英/法）' },
+    ],
+    cards: [
+      { icon: 'User', title: '关于我', desc: '专业背景、教育及工作经历', href: '#about' },
+      { icon: 'FolderOpen', title: '核心项目', desc: '6个项目全流程展示，含数据可视化', href: '#projects' },
+      { icon: 'Wrench', title: '专业能力', desc: '用研、数据分析、行业标准、项目管理', href: '#skills' },
+      { icon: 'Compass', title: '求职方向', desc: '4个方向：用研、策略、AI评估、咨询', href: '#career' },
+    ],
+  },
   heroScroll: '向下滚动',
   aboutHeading: '关于我',
   aboutSub: '',
@@ -321,6 +336,21 @@ const en = {
     { label: 'Skills', href: '#skills' },
     { label: 'Direction', href: '#career' },
   ],
+  overview: {
+    heading: 'Site Tour',
+    stats: [
+      { value: '6+', label: 'Yrs Smart Cockpit UX' },
+      { value: '6', label: 'Key Projects' },
+      { value: '5', label: 'Skill Modules' },
+      { value: '3', label: 'Languages (CN/EN/FR)' },
+    ],
+    cards: [
+      { icon: 'User', title: 'About Me', desc: 'Background, education & work experience', href: '#about' },
+      { icon: 'FolderOpen', title: 'Key Projects', desc: '6 projects with data visualization', href: '#projects' },
+      { icon: 'Wrench', title: 'Skills', desc: 'UX research, data analysis, standards, PM', href: '#skills' },
+      { icon: 'Compass', title: 'Career Direction', desc: 'UX, strategy, AI evaluation, consulting', href: '#career' },
+    ],
+  },
   heroScroll: 'Scroll Down',
   aboutHeading: 'About Me',
   aboutSub: '',
