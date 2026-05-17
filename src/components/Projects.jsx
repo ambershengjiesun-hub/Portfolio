@@ -207,7 +207,7 @@ function NarrativeBlock({ icon: Icon, label, content, children, delay }) {
 
 function ProjectCard({ project, labels }) {
   return (
-    <motion.div {...fadeUp} className="card">
+    <motion.div {...fadeUp} className="card" id={project.id}>
       <div className="flex flex-wrap items-start justify-between gap-3 mb-2">
         <h3 className="text-xl md:text-2xl font-bold text-white">
           {project.title}

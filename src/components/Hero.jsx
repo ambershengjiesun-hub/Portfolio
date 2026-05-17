@@ -83,7 +83,7 @@ export default function Hero() {
               <a
                 key={card.href}
                 href={card.href}
-                className="flex items-center gap-3 p-3.5 rounded-xl border border-gray-800/60 bg-surface-800/40 backdrop-blur-sm hover:border-brand-blue/30 transition-colors group text-left"
+                className="flex items-center gap-3 p-3.5 rounded-xl border border-gray-800/60 bg-surface-800/40 backdrop-blur-sm hover:border-brand-blue/30 transition-colors group text-left h-full"
               >
                 <div className="shrink-0 w-9 h-9 rounded-lg bg-brand-blue/10 flex items-center justify-center group-hover:bg-brand-blue/15 transition-colors">
                   <Icon size={16} className="text-brand-blue" />
