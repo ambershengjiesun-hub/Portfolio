@@ -101,14 +101,14 @@ export default function SideNav() {
                             }`}
                           />
                           <span
-                            className={`text-xs whitespace-nowrap transition-colors duration-300 ${
+                            className={`text-[10px] whitespace-nowrap transition-colors duration-300 ${
                               pActive
                                 ? 'text-brand-blue-light'
                                 : 'text-gray-600 group-hover:text-gray-400'
                             }`}
                           >
-                            {p.title.length > 20
-                              ? p.title.slice(0, 20) + '…'
+                            {p.title.length > 14
+                              ? p.title.slice(0, 14) + '…'
                               : p.title}
                           </span>
                         </a>

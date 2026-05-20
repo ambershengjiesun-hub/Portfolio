@@ -26,15 +26,17 @@ export default function App() {
       {unlocked && (
         <div className="min-h-screen bg-surface-900 text-white">
           <Navbar />
-          <Hero />
           <SideNav />
-          <About />
-          <Timeline />
-          <Projects />
-          <Skills />
-          <CareerDirections />
-          <AboutSite />
-          <Footer />
+          <main className="lg:ml-16">
+            <Hero />
+            <About />
+            <Timeline />
+            <Projects />
+            <Skills />
+            <CareerDirections />
+            <AboutSite />
+            <Footer />
+          </main>
         </div>
       )}
     </>
