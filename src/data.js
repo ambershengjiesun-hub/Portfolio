@@ -2,7 +2,7 @@
 // 双语内容数据
 // ============================
 
-export const sitePassword = 'haveaniceday'
+export const sitePassword = 'haveanicelife'
 
 const zh = {
   personal: {
